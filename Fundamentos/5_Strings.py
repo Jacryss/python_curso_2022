@@ -113,4 +113,5 @@ print(cadenaTexto2.endswith('parque'))
 print(cadenaTexto2.endswith('cine'))
 
 
-
+#Reemplazar palabras
+print(cadenaTexto2.replace('niños', 'niñas').replace('Los','Las'))
