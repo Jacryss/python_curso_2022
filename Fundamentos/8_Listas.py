@@ -56,3 +56,52 @@ listaAlumnos2.remove('Alejandro')
 print(listaAlumnos2)
 
 # Operador 
+print('Andres' in listaAlumnos2)
+print('Sammy' in listaAlumnos2)
+
+# Hacer una copia
+CopiaListaAlumnos =listaAlumnos2[::]
+print(CopiaListaAlumnos)
+CopiaListaAlumnos2 = CopiaListaAlumnos.copy()
+print(CopiaListaAlumnos2)
+
+# Invertir la copia
+print(CopiaListaAlumnos[::-1])
+CopiaListaAlumnos2.reverse()
+print(CopiaListaAlumnos2)
+
+# Encontrar índice de una lista
+print(CopiaListaAlumnos.index('Janeth'))
+
+# ¿Qué pasaría si solicito un índice de un elemento que no se encuentra en la list?
+# print(CopiaListaAlumnos.index(58))
+
+# Ordenar 
+CopiaListaAlumnos.sort()
+print(CopiaListaAlumnos)
+
+
+lista4 = [10,60,19,19,45]
+lista4.sort()
+print(lista4)
+
+# Ordenar una lista con diferentes tipos de datos no es posible
+# lista5 = ['a',10,60,19,19,45]
+# lista5.sort()
+# print(lista5)
+
+# Pueden convertir un string a una lista
+cadenaTexto = 'Las Universidad piensan retornar a la presencialidad'
+listadeTexto = list(cadenaTexto)
+print(listadeTexto)
+
+# Separar en palabras
+listaPalabra = cadenaTexto.split(' ')
+print(listaPalabra)
+
+# Contar el número de veces que una palabra está en la lista
+print(listaPalabra.count('Universidad'))
+
+# Join 
+saludo = 'Saludo: '
+oracion = saludo.join([])
