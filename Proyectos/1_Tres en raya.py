@@ -12,16 +12,48 @@
 # de los jugadores, y adempas escoger los caracteres, por defeco sera la x ye l o
 # Y la tercera opción será jugar
 # Y la cuarta salir
+# Además los resultados se guardarán en un archivo de texto con fecha y hora
+
+
+
+from random import randint
+
+from sqlalchemy import false
 
 global nombreJugador1
-nombreJugador1 = 'Jugador1'
+nombreJugador1 = 'Jugador 1'
 global nombreJugador2
-nombreJugador2 = 'Jugador2'
-
+nombreJugador2 = 'Jugador 2'
 global piezaJugador1
 piezaJugador1 = 'X'
 global piezaJugador2
-piezaJugador3 = '0'
+piezaJugador2 = 'O'
+
+def crearMatriz():
+    matriz = []
+    nFilas = 3
+    nColumnas = 3
+    for i in range(nFilas):
+        matriz.append(['-']*nColumnas)
+    #for i in range(0,nFilas):
+        #for j in range(0,nColumnas):
+            #mensaje = f'Ingrese el valor de la fila {i+1} en la columna {j+1}: '
+            #matriz[i][j] = int(input(mensaje))
+    dimensiones = (nFilas,nColumnas)
+    return matriz, dimensiones
+
+def mostrarMatriz(matriz, dimensiones):
+    filas, columnas = dimensiones
+    for i in range(filas):
+        for j in range(columnas):
+            print(matriz[i][j], end='\t')
+        print('')
+
+
+def llenarMatriz(matriz,caracter):
+    fila = int(input('Fila: '))
+    columna = int(input('Columna: '))
+    matriz[fila-1][columna-1] = caracter       
 
 def menu():
     print('\n\tTres en raya\n')
@@ -30,24 +62,23 @@ def menu():
     print('3. Jugar')
     print('4. Salir')
     opcion = input('Ingrese una opción: ')
-    # print('Desde adentro de la opicón menú', opcion)
+    #print('Dsde adentro de la fun menu:',opcion)
     return opcion
 
 def nombreJugadores():
-    print('\n\tNombre jugadores')
-    print('1. Cambiar nombre jugador 1')
-    print('2. Cambiar nombre jugador 2')
-    opcionNombre = input('Cambiar nombre del jugador:')
-
+    print('\n\tNombre jugadores')    
+    print('1. Cambiar nombre del jugador 1')
+    print('2. Cambiar nombre del jugador 2')
+    opcionNombre = input('Cambiar nombre del jugador: ')    
+ 
     if opcionNombre == '1':
         global nombreJugador1
-        nombreJugador1 = input('Nombre jugador 1: ')
-
+        nombreJugador1 = input('Nombre del jugador 1: ')        
     elif opcionNombre == '2':
         global nombreJugador2
-        nombreJugador2 = input('Nombre jugador 2: ')
+        nombreJugador2 = input('Nombre del jugador 2: ')
     else:
-        print('Por favor ingrese una opción válida')
+        print('Ingrese una opción válida')
 
 def cambiarPiezas():
     print('\n\tPiezas')    
@@ -76,30 +107,42 @@ def cambiarPiezas():
         print('Ingrese una opción válida')
 
 
-
-def jugar():
+def jugar(tablero,dimensiones):
+ 
     print('Jugando....')
-    print('Es turno del jugador1',nombreJugador1)   
+    finalizado = False
+    turno = randint(1,2)
+    while finalizado == False:        
+        if turno == 1:
+            print('Es turno de: ',nombreJugador1)
+            llenarMatriz(tablero, piezaJugador1)
+            turno=2
+        else:
+            print('Es turno de: ',nombreJugador2)
+            llenarMatriz(tablero, piezaJugador2)  
+            turno=1      
+        mostrarMatriz(tablero,dimensiones)
+
 
 def mostrarTablero():
     pass
 
 def main():
-    opcionMenu = menu() # ejecuta la opción menú y también va asignar el retorno de mi variable 
-    # Condicionales 
-    if opcionMenu == '1':
-        nombreJugadores()
-    elif opcionMenu == '2':
-        print('Cambia las piezas')
-    elif opcionMenu == '3':
-        jugar()
-    elif opcionMenu == '4':
-        print('Saliento...')         
-    else:
-        print('Por favor ingrese una opción válida')
+    terminarJuego = False      
+    while terminarJuego == False:
+        opcionMenu = menu()  # Va a ejcutar la función menú y tambipne va asignar el retorno a mi variable    
+        # Condicionales
+        if opcionMenu == '1':
+            nombreJugadores()    
+        elif opcionMenu == '2':
+            cambiarPiezas()
+        elif opcionMenu == '3':
+            tablero, dimensiones = crearMatriz()
+            jugar(tablero,dimensiones)
+        elif opcionMenu == '4':
+            print('\tGracias por jugar, te esperamos pronto')
+            terminarJuego = True
+        else:
+            print('Por favor ingrese una opción válida')             
 
-    jugar()
-
-    
 main()
-
