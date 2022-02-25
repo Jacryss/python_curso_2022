@@ -14,7 +14,6 @@
 # Y la cuarta salir
 # Además los resultados se guardarán en un archivo de texto con fecha y hora
 
-
 from random import randint
 
 from sqlalchemy import false
