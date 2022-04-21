@@ -1,0 +1,7 @@
+Deporte			Ocurrencias
+BalonMano			91
+Karate			80
+Futbol			78
+Atletismo			75
+Basket			96
+Tenis			80
